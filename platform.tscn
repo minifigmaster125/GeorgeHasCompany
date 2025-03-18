@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqhcodxx50qgr"]
+
+[ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="1_mi635"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(5, 0.1, 5)
+
+[node name="StaticBody3D3" type="StaticBody3D"]
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+mesh = SubResource("BoxMesh_ig7tw")
+material = ExtResource("1_mi635")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_h2yge")

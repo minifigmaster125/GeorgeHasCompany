@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4e3i7shmt1q2"]
+
+[ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="1_anflb"]
+
+[node name="CharacterCamera" type="Camera3D"]
+
+[node name="Node3D" parent="." instance=ExtResource("1_anflb")]

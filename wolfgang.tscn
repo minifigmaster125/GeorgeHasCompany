@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cn0dmhedxp4rg"]
+
+[ext_resource type="Script" uid="uid://b5wn71ixf1atu" path="res://player.gd" id="1_1x5ha"]
+[ext_resource type="PackedScene" uid="uid://b4e3i7shmt1q2" path="res://character_camera.tscn" id="2_f54wh"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0xm2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.204431, 0.556588, 0.70345, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h2yge"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f54wh"]
+size = Vector3(1, 0.2, 1)
+
+[node name="CharacterBody3D2" type="CharacterBody3D"]
+script = ExtResource("1_1x5ha")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_0xm2m")
+material = SubResource("StandardMaterial3D_h2yge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_h2yge")
+
+[node name="CharacterCamera" parent="." instance=ExtResource("2_f54wh")]
+transform = Transform3D(1, 0, 0, 0, 0.956146, 0.292889, 0, -0.292889, 0.956146, 0, 0.936806, 2.02569)
+
+[node name="BottomArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.51456, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BottomArea"]
+shape = SubResource("BoxShape3D_f54wh")
+
+[node name="TopArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TopArea"]
+shape = SubResource("BoxShape3D_f54wh")
