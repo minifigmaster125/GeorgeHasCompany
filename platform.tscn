@@ -8,7 +8,8 @@ size = Vector3(5, 0.1, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
 size = Vector3(5, 0.1, 5)
 
-[node name="StaticBody3D3" type="StaticBody3D"]
+[node name="StaticBody3D3" type="AnimatableBody3D"]
+sync_to_physics = false
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 mesh = SubResource("BoxMesh_ig7tw")

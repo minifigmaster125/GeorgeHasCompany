@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv5ue6a0w176o"]
+
+[ext_resource type="Script" uid="uid://bubat0w0s4yhr" path="res://goal.gd" id="1_2aart"]
+[ext_resource type="Material" uid="uid://bnug3cp2d8of6" path="res://levels/targetMat.tres" id="1_t8iqj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2aart"]
+
+[node name="GoalCylinder" type="Area3D"]
+script = ExtResource("1_2aart")
+
+[node name="CSGShape" type="CSGCylinder3D" parent="."]
+material_override = ExtResource("1_t8iqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_2aart")

@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4e3i7shmt1q2"]
+[gd_scene load_steps=3 format=3 uid="uid://b4e3i7shmt1q2"]
 
 [ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="1_anflb"]
+[ext_resource type="Script" uid="uid://d243rwfo3n1bx" path="res://character_camera.gd" id="1_jh334"]
 
 [node name="CharacterCamera" type="Camera3D"]
+script = ExtResource("1_jh334")
+return_speed = 10.0
 
 [node name="Node3D" parent="." instance=ExtResource("1_anflb")]
+visible = false

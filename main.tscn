@@ -1,38 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://dl7g7n11xewby"]
+[gd_scene load_steps=8 format=3 uid="uid://dl7g7n11xewby"]
 
 [ext_resource type="Script" uid="uid://dsbvbnsbvlw41" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://cqhcodxx50qgr" path="res://platform.tscn" id="3_5vw27"]
-[ext_resource type="PackedScene" uid="uid://c8ld6j5d137lp" path="res://player.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cn0dmhedxp4rg" path="res://wolfgang.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://dbyew4l01dpck" path="res://levels/level1.tscn" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://cgw2ttqaepnye" path="res://GeorgeWasAlone.mp3" id="6_7mycd"]
-[ext_resource type="Script" uid="uid://s5col1orihxt" path="res://path_follow_3d.gd" id="7_kek77"]
 
-[sub_resource type="Environment" id="Environment_7dm0k"]
-background_mode = 1
-background_color = Color(0.178208, 0.2237, 0.195553, 1)
+[sub_resource type="Sky" id="Sky_272bh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ig7tw"]
-size = Vector3(5, 0.1, 5)
+[sub_resource type="Environment" id="Environment_5vw27"]
+background_mode = 2
+sky = SubResource("Sky_272bh")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
-size = Vector3(5, 0.1, 5)
+[sub_resource type="ViewportTexture" id="ViewportTexture_7mycd"]
+viewport_path = NodePath("SubViewport2")
 
-[sub_resource type="Curve3D" id="Curve3D_4c57u"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 5, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0),
-"tilts": PackedFloat32Array(0, 0)
-}
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_5vw27"]
-_data = [Vector2(0.00442478, 0.00957), 0.0, -0.0197378, 0, 0, Vector2(0.510324, 0.554064), 1.90263, 1.90263, 0, 0, Vector2(1, 1), 0.0326999, 0.0, 0, 0]
-point_count = 3
-
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("characters")]
+[node name="Node3D" type="Node3D"]
 script = ExtResource("1_h2yge")
-characters = [NodePath("SubViewportContainer/SubViewport/player"), NodePath("SubViewportContainer/SubViewport/wolfgang")]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
@@ -42,66 +25,91 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 5
+stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(384, 216)
+size = Vector2i(480, 270)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
-environment = SubResource("Environment_7dm0k")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-mesh = SubResource("BoxMesh_ig7tw")
-material = ExtResource("2_lquwl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D"]
-shape = SubResource("BoxShape3D_h2yge")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116474, 0, 7.46723)
-collision_mask = 3
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="SubViewportContainer/SubViewport/StaticBody3D2"]
-mesh = SubResource("BoxMesh_ig7tw")
-material = ExtResource("2_lquwl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/StaticBody3D2"]
-shape = SubResource("BoxShape3D_h2yge")
-
-[node name="StaticBody3D3" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_5vw27")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.116474, -3.69032, 3.87658)
+environment = SubResource("Environment_5vw27")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(-0.919362, 0.387218, 0.0695419, -0.0147322, -0.210527, 0.977477, 0.393137, 0.897631, 0.199255, 0, -0.00238848, -0.00929832)
+transform = Transform3D(0.965926, -1.13133e-08, 0.258819, -0.25, 0.258819, 0.933013, -0.0669873, -0.965926, 0.25, 1, 16.3122, -0.00929832)
+light_color = Color(0.744441, 0.77339, 0.899994, 1)
+light_energy = 0.5
 shadow_enabled = true
 
-[node name="wolfgang" parent="SubViewportContainer/SubViewport" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.293766, 4.25232, -0.960026)
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.961516, -0.12941, -0.242363, 0.197264, -0.288849, 0.936832, -0.191241, -0.948588, -0.252205, 1, 16.3122, -0.00929832)
+light_color = Color(0.744441, 0.77339, 0.899994, 1)
+light_energy = 0.5
+shadow_enabled = true
 
-[node name="player" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_h2yge")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.293766, 4.25232, 1.03538)
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.961516, -0.12941, -0.242362, 0.266457, 0.224144, 0.937422, -0.0669873, -0.965926, 0.25, 1, 16.3122, -0.00929832)
+light_color = Color(0.744441, 0.77339, 0.899994, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.957552, 0.133669, 0.255394, -0.21875, -0.24004, 0.945796, 0.187728, -0.961516, -0.200611, 1, 16.3122, -0.00929832)
+light_color = Color(0.744441, 0.77339, 0.899994, 1)
+light_energy = 0.5
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.57568, 0.28764, -0.765412, 0.0883218, 0.908732, 0.407927, 0.812891, -0.302438, 0.497734, -2.29373, 2.30522, 1.16416)
-current = true
 
 [node name="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("4_lquwl")]
+visible = false
 
-[node name="Path3D" type="Path3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86674, 0, 3.4975)
-curve = SubResource("Curve3D_4c57u")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="SubViewportContainer/SubViewport/Path3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -3, 0)
-rotation_mode = 1
-script = ExtResource("7_kek77")
-progress_curve = SubResource("Curve_5vw27")
-
-[node name="StaticBody3D3" parent="SubViewportContainer/SubViewport/Path3D/PathFollow3D" instance=ExtResource("3_5vw27")]
+[node name="Node3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_7mycd")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_7mycd")
+volume_db = -29.918
+autoplay = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 51.0
+offset_top = 725.0
+offset_right = 531.0
+offset_bottom = 995.0
+texture = SubResource("ViewportTexture_7mycd")
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+size = Vector2i(362, 232)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport2"]
+transform = Transform3D(-2.18557e-08, -0.5, 0.866025, 3.78552e-08, 0.866025, 0.5, -1, 4.37114e-08, -1.77636e-15, 16.4202, 15.5918, -3.97786)
+projection = 1
+size = 23.972
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -527.0
+offset_top = 50.0
+offset_right = -54.0
+offset_bottom = 168.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 22
+text = "George was always in the company of others. And yet, he still felt alone. Was that a them problem? Or a him problem?"
+autowrap_mode = 2

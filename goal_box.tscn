@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cofxfeh7uhetk"]
+
+[ext_resource type="Script" uid="uid://bubat0w0s4yhr" path="res://goal.gd" id="1_dxh6y"]
+[ext_resource type="Material" uid="uid://bnug3cp2d8of6" path="res://levels/targetMat.tres" id="2_o644c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_61w3m"]
+
+[node name="GoalBox" type="Area3D"]
+script = ExtResource("1_dxh6y")
+
+[node name="Goal1" type="CSGBox3D" parent="."]
+material_override = ExtResource("2_o644c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_61w3m")

@@ -1,25 +1,23 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8ld6j5d137lp"]
 
 [ext_resource type="Script" uid="uid://b5wn71ixf1atu" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Material" uid="uid://cb1k0b8xcl2di" path="res://playerMat.tres" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://b4e3i7shmt1q2" path="res://character_camera.tscn" id="2_onrkg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sh265"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4flbx"]
-albedo_color = Color(0.94902, 0.835294, 0.380392, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3pqv"]
 size = Vector3(1, 0.2, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00197303, -0.0053786, 0.00452733)
 mesh = SubResource("BoxMesh_sh265")
-material = SubResource("StandardMaterial3D_4flbx")
+material = ExtResource("2_i3pqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00197303, -0.0053786, 0.00452733)
@@ -27,7 +25,9 @@ shape = SubResource("BoxShape3D_onrkg")
 debug_color = Color(0.122104, 0.667543, 0.864034, 0.42)
 
 [node name="CharacterCamera" parent="." instance=ExtResource("2_onrkg")]
-transform = Transform3D(1, 0, 0, 0, 0.88515, 0.465306, 0, -0.465306, 0.88515, 0, 1.1641, 1.75192)
+transform = Transform3D(1, 0, 0, 0, 0.978678, 0.205402, 0, -0.205402, 0.978678, 0, 1.16173, 2.22245)
+current = true
+neutral_pitch = -20.0
 
 [node name="BottomArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.51456, 0)

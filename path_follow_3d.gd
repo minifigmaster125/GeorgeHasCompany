@@ -6,7 +6,11 @@ extends PathFollow3D
 var dir = 1
 var t = 0
 
-func _process(delta):
+
+func _ready():
+	t = randf()
+
+func _physics_process(delta):
 	t += dir * speed * delta
 	if progress_ratio >= 0.99:
 		progress_ratio = 0.99

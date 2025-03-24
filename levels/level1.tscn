@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbyew4l01dpck"]
+
+[ext_resource type="Script" uid="uid://bhgg2o5o4kojw" path="res://levels/level_manager.gd" id="1_61w3m"]
+[ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="1_b3oru"]
+[ext_resource type="Script" uid="uid://cpv38oy5nj82r" path="res://levels/death_area.gd" id="2_pdtm5"]
+[ext_resource type="PackedScene" uid="uid://c8ld6j5d137lp" path="res://player.tscn" id="6_8hd6v"]
+[ext_resource type="PackedScene" uid="uid://cn0dmhedxp4rg" path="res://wolfgang.tscn" id="7_045es"]
+[ext_resource type="PackedScene" uid="uid://cofxfeh7uhetk" path="res://goal_box.tscn" id="8_omn1t"]
+[ext_resource type="PackedScene" uid="uid://bv5ue6a0w176o" path="res://goal_cylinder.tscn" id="9_lf3p4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sjb42"]
+size = Vector3(34.1282, 1, 48.9264)
+
+[node name="Level1" type="Node3D" node_paths=PackedStringArray("characters")]
+script = ExtResource("1_61w3m")
+characters = [NodePath("Player"), NodePath("Cylinder")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("1_b3oru")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+size = Vector3(17, 1, 25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 5.0069, -4)
+size = Vector3(20, 11.0138, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.34139, -4.5)
+operation = 2
+size = Vector3(1, 3, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0628152, 1.73221, 0)
+size = Vector3(1, 4.46442, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08093, 0.0379944, -2.25455)
+operation = 2
+size = Vector3(19.2078, 1.83002, 2.4873)
+
+[node name="DeathArea" type="Area3D" parent="." node_paths=PackedStringArray("spawn_point_one", "spawn_point_two")]
+script = ExtResource("2_pdtm5")
+spawn_point_one = NodePath("../Spawn1")
+spawn_point_two = NodePath("../Spawn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.38977, -3.06098, -3.09821)
+shape = SubResource("BoxShape3D_sjb42")
+
+[node name="Spawn1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
+
+[node name="Spawn2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75315, 4.30863)
+
+[node name="Player" parent="." instance=ExtResource("6_8hd6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
+
+[node name="Cylinder" parent="." instance=ExtResource("7_045es")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75315, 4.30863)
+
+[node name="GoalBox" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("8_omn1t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32818, 1, 0.833805)
+required_target = NodePath("../Player")
+
+[node name="GoalCylinder" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("9_lf3p4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72121, -11.6656)
+required_target = NodePath("../Cylinder")
+
+[connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]
