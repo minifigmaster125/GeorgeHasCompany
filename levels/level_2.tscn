@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4tf0c0wsucg2"]
+
+[ext_resource type="Script" uid="uid://bhgg2o5o4kojw" path="res://levels/level_manager.gd" id="1_mi4ay"]
+
+[node name="Level2" type="Node3D"]
+script = ExtResource("1_mi4ay")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2.5)
+size = Vector3(13, 1, 18)

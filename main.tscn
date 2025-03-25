@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl7g7n11xewby"]
+[gd_scene load_steps=7 format=3 uid="uid://dl7g7n11xewby"]
 
 [ext_resource type="Script" uid="uid://dsbvbnsbvlw41" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="4_lquwl"]
-[ext_resource type="PackedScene" uid="uid://dbyew4l01dpck" path="res://levels/level1.tscn" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://cgw2ttqaepnye" path="res://GeorgeWasAlone.mp3" id="6_7mycd"]
 
 [sub_resource type="Sky" id="Sky_272bh"]
@@ -64,8 +63,6 @@ transform = Transform3D(0.57568, 0.28764, -0.765412, 0.0883218, 0.908732, 0.4079
 
 [node name="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("4_lquwl")]
 visible = false
-
-[node name="Node3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_7mycd")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_7mycd")

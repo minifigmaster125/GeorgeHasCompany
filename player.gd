@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var jump_force: float = 20.0
 @export var gravity: float = 9.8
@@ -77,4 +78,3 @@ func deactivate():
 	velocity = Vector3.ZERO
 	active = false
 	$CharacterCamera.current = false
-	
