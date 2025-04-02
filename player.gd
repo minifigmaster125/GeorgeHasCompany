@@ -14,9 +14,15 @@ var jumped = false
 var direction: Vector3 = Vector3.ZERO
 var attached: Array[CharacterBody3D] = []
 var dist: Vector3 = Vector3.ZERO
-# handle input every frame.
-func _process(delta: float) -> void:
-	pass
+var airborne = false
+var last_velocity: Vector3 = Vector3.ZERO
+
+var audioPlayer: AudioStreamPlayer = AudioStreamPlayer.new()
+const landing_sound = preload("res://sfx/landing.ogg")
+
+func _ready():
+	audioPlayer.stream = landing_sound
+	add_child(audioPlayer)
 	
 func _physics_process(delta):
 	if active:
@@ -33,6 +39,7 @@ func _physics_process(delta):
 			direction.x += 1.0
 		if is_on_floor() and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_force
+
 
 		var d = direction.normalized()
 		
@@ -52,6 +59,19 @@ func _physics_process(delta):
 				velocity.y = 0
 			else:
 				body.position = position + dist
+
+	if is_on_floor():
+		if airborne:
+			airborne = false
+			# play landing sound
+			print(last_velocity.y)
+			audioPlayer.volume_db = abs(last_velocity.y) * 0.5
+			audioPlayer.play()
+
+	if abs(velocity.y) > 0:
+			airborne = true
+
+	last_velocity = velocity
 	velocity.y -= mass * gravity * delta
 	move_and_slide()
 

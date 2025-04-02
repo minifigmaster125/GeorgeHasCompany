@@ -1,12 +1,139 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4tf0c0wsucg2"]
+[gd_scene load_steps=16 format=3 uid="uid://c4tf0c0wsucg2"]
 
 [ext_resource type="Script" uid="uid://bhgg2o5o4kojw" path="res://levels/level_manager.gd" id="1_mi4ay"]
+[ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="2_pqqg8"]
+[ext_resource type="PackedScene" uid="uid://c8ld6j5d137lp" path="res://player.tscn" id="3_ilhis"]
+[ext_resource type="Material" uid="uid://do6rv0tr6wvqf" path="res://levels/pressable.tres" id="3_sd18g"]
+[ext_resource type="PackedScene" uid="uid://cn0dmhedxp4rg" path="res://wolfgang.tscn" id="4_ep78u"]
+[ext_resource type="PackedScene" uid="uid://cofxfeh7uhetk" path="res://goal_box.tscn" id="5_dfjjl"]
+[ext_resource type="PackedScene" uid="uid://bv5ue6a0w176o" path="res://goal_cylinder.tscn" id="6_at1ld"]
+[ext_resource type="PackedScene" uid="uid://b31s5dswppdbk" path="res://components/mechanism.tscn" id="8_at1ld"]
+[ext_resource type="PackedScene" uid="uid://c7v0jh165vt04" path="res://components/pressable.tscn" id="9_sd18g"]
+[ext_resource type="Script" uid="uid://byhjceh4aqk5x" path="res://levels/mechanism.gd" id="10_vm7no"]
+[ext_resource type="Script" uid="uid://bub6yw7ktbsne" path="res://levels/platform.gd" id="11_hbb88"]
+[ext_resource type="Script" uid="uid://cpv38oy5nj82r" path="res://levels/death_area.gd" id="12_hbb88"]
+
+[sub_resource type="Curve3D" id="Curve3D_dfjjl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9.72091, 2.39014e-07),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wcjpl"]
+data = PackedVector3Array(-3.78522, -0.305054, 7.90228, -3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, -0.305054, -7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, -3.78522, 0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, -0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, 0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcjpl"]
+size = Vector3(48.5475, 4.92627, 70.2042)
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_mi4ay")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_pqqg8")
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02644, -4.14318, -2.5)
 size = Vector3(13, 1, 18)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35044, -1.89554, -31.3067)
+size = Vector3(13, 1, 18)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5264, -6.58357, -3.0618)
+size = Vector3(13, 1, 18)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5353, 4.44117, -18.1777)
+size = Vector3(13, 1, 18)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61273, -0.746951, -29.1704)
+use_collision = true
+size = Vector3(1, 2.24561, 1)
+material = ExtResource("3_sd18g")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.82548, -2.641, -8.72771)
+use_collision = true
+size = Vector3(1, 2.24561, 1)
+material = ExtResource("3_sd18g")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.950048, -0.312103, 0, 0.312103, 0.950048, 0, 0, 0, 1, -2.51341, -3.11998, 0.404053)
+size = Vector3(8.49847, 1.43506, 1.80811)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.979663, 0.200651, 0, -0.200651, 0.979663, 0, 0, 0, 1, 2.39634, -2.9951, 0.404053)
+size = Vector3(4.31808, 1.43506, 1.80811)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.0597419, 0.998214, 0, -0.998214, 0.0597419, 0, 0, 0, 1, -5.26233, -2.4601, 0.404053)
+size = Vector3(5.39, 1.43506, 1.80811)
+
+[node name="Spawn1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
+
+[node name="Spawn2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7787, -3.98825, 3.47591)
+
+[node name="Player" parent="." groups=["characters"] instance=ExtResource("3_ilhis")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973558, -1.43044, 5.50991)
+
+[node name="Cylinder" parent="." groups=["characters"] instance=ExtResource("4_ep78u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.71458, -4.5086, 4.30863)
+
+[node name="GoalBox" parent="." instance=ExtResource("5_dfjjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498337, -0.56297, -36.9991)
+
+[node name="GoalCylinder" parent="." instance=ExtResource("6_at1ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1097, 5.8415, -19.8098)
+
+[node name="Lift" parent="." instance=ExtResource("8_at1ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7883, -9.68437, -6.5153)
+
+[node name="Pressable" parent="." node_paths=PackedStringArray("mechanism") instance=ExtResource("9_sd18g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63013, -0.596011, -28.6367)
+mechanism = NodePath("../Lift")
+
+[node name="Pressable2" parent="." node_paths=PackedStringArray("mechanism") instance=ExtResource("9_sd18g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90993, -2.54924, -8.1606)
+mechanism = NodePath("../Lift2")
+
+[node name="Lift2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.19711, 0.980381, 0, -0.980381, 0.19711, 0, -5.42311, -5.35927)
+script = ExtResource("10_vm7no")
+
+[node name="Path3D" type="Path3D" parent="Lift2"]
+curve = SubResource("Curve3D_dfjjl")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Lift2/Path3D"]
+transform = Transform3D(-4.37106e-08, 0.999977, -4.37108e-08, 0, -4.37104e-08, -0.999987, -0.999981, -4.37104e-08, 1.91066e-15, 0, 9.72091, 2.39014e-07)
+progress = 9.72091
+loop = false
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Lift2/Path3D/PathFollow3D"]
+transform = Transform3D(1.91068e-15, -4.37114e-08, -1, -1, -4.37114e-08, 5.32244e-21, -4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+sync_to_physics = false
+script = ExtResource("11_hbb88")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Lift2/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952678, 0.999953, 4.32134e-07, 0.00139375, 0.081089, 0.242014)
+size = Vector3(7.57043, 0.610107, 15.8046)
+material = ExtResource("3_sd18g")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Lift2/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952678, 0.999953, 4.32134e-07, 0.00139375, 0.081089, 0.242014)
+shape = SubResource("ConcavePolygonShape3D_wcjpl")
+
+[node name="DeathArea" type="Area3D" parent="." node_paths=PackedStringArray("spawn_point_one", "spawn_point_two")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9635, 0)
+script = ExtResource("12_hbb88")
+spawn_point_one = NodePath("../Spawn1")
+spawn_point_two = NodePath("../Spawn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64878, -14.5957, -21.2162)
+shape = SubResource("BoxShape3D_wcjpl")

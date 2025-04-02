@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dsbvbnsbvlw41" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="4_lquwl"]
-[ext_resource type="AudioStream" uid="uid://cgw2ttqaepnye" path="res://GeorgeWasAlone.mp3" id="6_7mycd"]
 
 [sub_resource type="Sky" id="Sky_272bh"]
 
@@ -12,6 +11,8 @@ sky = SubResource("Sky_272bh")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7mycd"]
 viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_h2yge")
@@ -24,11 +25,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 4
+stretch_shrink = 3
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(480, 270)
+size = Vector2i(640, 360)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
@@ -64,10 +65,9 @@ transform = Transform3D(0.57568, 0.28764, -0.765412, 0.0883218, 0.908732, 0.4079
 [node name="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("4_lquwl")]
 visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_7mycd")
-volume_db = -29.918
-autoplay = true
+[node name="NarrativeAudioPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -19.945
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 51.0
@@ -84,29 +84,29 @@ transform = Transform3D(-2.18557e-08, -0.5, 0.866025, 3.78552e-08, 0.866025, 0.5
 projection = 1
 size = 23.972
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -527.0
-offset_top = 50.0
-offset_right = -54.0
-offset_bottom = 168.0
+offset_top = 100.0
+offset_right = -100.0
+grow_horizontal = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/MarginContainer"]
+[node name="LevelNarrative" type="RichTextLabel" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 22
-text = "George was always in the company of others. And yet, he still felt alone. Was that a them problem? Or a him problem?"
+theme_override_styles/background = SubResource("StyleBoxFlat_0xm2m")
+text = "Honk Honk"
+fit_content = true
 autowrap_mode = 2

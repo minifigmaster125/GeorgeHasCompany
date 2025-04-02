@@ -24,6 +24,10 @@ window/size/viewport_height=1080
 
 project/assembly_name="pixel3dShader"
 
+[global_group]
+
+characters=""
+
 [input]
 
 move_forward={

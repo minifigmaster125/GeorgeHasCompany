@@ -10,6 +10,9 @@ var current_character = 0
 var goal_count = 0
 
 func _ready():
+	characters.assign((get_tree().get_nodes_in_group("characters").map(func(node: Node) -> Player:
+		return node as Player
+	)) as Array[Player])
 	for child in get_children():
 		if child is Goal:
 			var goal = child as Goal
@@ -17,7 +20,6 @@ func _ready():
 			goal.target_entered_goal.connect(_on_target_entered_goal)
 			goal.target_exited_goal.connect(_on_target_exited_goal)
 	for character in characters.size():
-		print(character)
 		if character != current_character:
 			characters[character].deactivate()
 		else:
@@ -40,7 +42,7 @@ func _on_target_entered_goal():
 func _on_target_exited_goal():
 	goal_count -= 1
 	if goal_count < goals.size():
-		print("Not all goals completed!")
+		pass
 
 func wrap_up():
 	var tween := create_tween()
@@ -49,11 +51,3 @@ func wrap_up():
 		var mesh := character.get_node("CSGMesh3D")
 		tween.tween_property(mesh, "scale", Vector3.ZERO, 0.5)
 	await tween.finished
-	# var tween1 := create_tween()
-	# var tween2 := create_tween()
-	# var mesh := characters[0].get_node("CSGMesh3D")
-	# var mesh2 := characters[1].get_node("CSGMesh3D")
-	# tween1.tween_property(mesh, "scale", Vector3.ZERO, 0.5)
-	# tween2.tween_property(mesh2, "scale", Vector3.ZERO, 0.5)
-	# await tween1.finished
-	# await tween2.finished
