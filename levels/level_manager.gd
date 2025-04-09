@@ -1,7 +1,7 @@
 extends Node3D
 class_name Level
 
-@export var characters: Array[Player] = []
+var characters: Array[Player] = []
 var goals: Array[Goal] = []
 
 signal level_completed
@@ -10,15 +10,14 @@ var current_character = 0
 var goal_count = 0
 
 func _ready():
-	characters.assign((get_tree().get_nodes_in_group("characters").map(func(node: Node) -> Player:
-		return node as Player
-	)) as Array[Player])
 	for child in get_children():
 		if child is Goal:
 			var goal = child as Goal
 			goals.append(child)
 			goal.target_entered_goal.connect(_on_target_entered_goal)
 			goal.target_exited_goal.connect(_on_target_exited_goal)
+		if child is Player:
+			characters.append(child)
 	for character in characters.size():
 		if character != current_character:
 			characters[character].deactivate()

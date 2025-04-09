@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c4tf0c0wsucg2"]
+[gd_scene load_steps=17 format=3 uid="uid://c4tf0c0wsucg2"]
 
 [ext_resource type="Script" uid="uid://bhgg2o5o4kojw" path="res://levels/level_manager.gd" id="1_mi4ay"]
 [ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="2_pqqg8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c7v0jh165vt04" path="res://components/pressable.tscn" id="9_sd18g"]
 [ext_resource type="Script" uid="uid://byhjceh4aqk5x" path="res://levels/mechanism.gd" id="10_vm7no"]
 [ext_resource type="Script" uid="uid://bub6yw7ktbsne" path="res://levels/platform.gd" id="11_hbb88"]
+[ext_resource type="AudioStream" uid="uid://bsx2sijdojhbo" path="res://sfx/lift.ogg" id="11_wcjpl"]
 [ext_resource type="Script" uid="uid://cpv38oy5nj82r" path="res://levels/death_area.gd" id="12_hbb88"]
 
 [sub_resource type="Curve3D" id="Curve3D_dfjjl"]
@@ -24,7 +25,7 @@ point_count = 2
 data = PackedVector3Array(-3.78522, -0.305054, 7.90228, -3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, -0.305054, -7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, -3.78522, 0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, -0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, 0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wcjpl"]
-size = Vector3(48.5475, 4.92627, 70.2042)
+size = Vector3(48.5475, 1.13403, 70.2042)
 
 [node name="Level2" type="Node3D"]
 script = ExtResource("1_mi4ay")
@@ -74,25 +75,28 @@ transform = Transform3D(0.0597419, 0.998214, 0, -0.998214, 0.0597419, 0, 0, 0, 1
 size = Vector3(5.39, 1.43506, 1.80811)
 
 [node name="Spawn1" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.86294, 5.50991)
 
 [node name="Spawn2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7787, -3.98825, 3.47591)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7787, -4.23279, 3.47591)
 
 [node name="Player" parent="." groups=["characters"] instance=ExtResource("3_ilhis")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.973558, -1.43044, 5.50991)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.991843, -2.80199, 5.49393)
 
 [node name="Cylinder" parent="." groups=["characters"] instance=ExtResource("4_ep78u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.71458, -4.5086, 4.30863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6733, -4.5086, 4.30863)
 
-[node name="GoalBox" parent="." instance=ExtResource("5_dfjjl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.498337, -0.56297, -36.9991)
+[node name="GoalBox" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("5_dfjjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.433773, -0.86297, -36.999)
+required_target = NodePath("../Player")
 
-[node name="GoalCylinder" parent="." instance=ExtResource("6_at1ld")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1097, 5.8415, -19.8098)
+[node name="GoalCylinder" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("6_at1ld")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1097, 5.5415, -19.8098)
+required_target = NodePath("../Cylinder")
 
 [node name="Lift" parent="." instance=ExtResource("8_at1ld")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7883, -9.68437, -6.5153)
+lift_sound = ExtResource("11_wcjpl")
 
 [node name="Pressable" parent="." node_paths=PackedStringArray("mechanism") instance=ExtResource("9_sd18g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63013, -0.596011, -28.6367)
@@ -105,6 +109,7 @@ mechanism = NodePath("../Lift2")
 [node name="Lift2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.19711, 0.980381, 0, -0.980381, 0.19711, 0, -5.42311, -5.35927)
 script = ExtResource("10_vm7no")
+lift_sound = ExtResource("11_wcjpl")
 
 [node name="Path3D" type="Path3D" parent="Lift2"]
 curve = SubResource("Curve3D_dfjjl")
@@ -129,11 +134,11 @@ transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217
 shape = SubResource("ConcavePolygonShape3D_wcjpl")
 
 [node name="DeathArea" type="Area3D" parent="." node_paths=PackedStringArray("spawn_point_one", "spawn_point_two")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9635, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00186586, -2.95053, -0.0150013)
 script = ExtResource("12_hbb88")
 spawn_point_one = NodePath("../Spawn1")
 spawn_point_two = NodePath("../Spawn2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64878, -14.5957, -21.2162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64878, -16.4918, -21.2162)
 shape = SubResource("BoxShape3D_wcjpl")

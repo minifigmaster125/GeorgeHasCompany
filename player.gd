@@ -17,12 +17,17 @@ var dist: Vector3 = Vector3.ZERO
 var airborne = false
 var last_velocity: Vector3 = Vector3.ZERO
 
-var audioPlayer: AudioStreamPlayer = AudioStreamPlayer.new()
+var landingAudioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
+var jumpingAudioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 const landing_sound = preload("res://sfx/landing.ogg")
+@export var jump_sound = AudioStream
 
 func _ready():
-	audioPlayer.stream = landing_sound
-	add_child(audioPlayer)
+	landingAudioPlayer.stream = landing_sound
+	jumpingAudioPlayer.stream = jump_sound
+	jumpingAudioPlayer.volume_db = -20.0
+	add_child(landingAudioPlayer)
+	add_child(jumpingAudioPlayer)
 	
 func _physics_process(delta):
 	if active:
@@ -39,6 +44,7 @@ func _physics_process(delta):
 			direction.x += 1.0
 		if is_on_floor() and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_force
+			jumpingAudioPlayer.play()
 
 
 		var d = direction.normalized()
@@ -65,8 +71,7 @@ func _physics_process(delta):
 			airborne = false
 			# play landing sound
 			print(last_velocity.y)
-			audioPlayer.volume_db = abs(last_velocity.y) * 0.5
-			audioPlayer.play()
+			play_landing_sound(abs(last_velocity.y))
 
 	if abs(velocity.y) > 0:
 			airborne = true
@@ -98,3 +103,17 @@ func deactivate():
 	velocity = Vector3.ZERO
 	active = false
 	$CharacterCamera.current = false
+
+func play_landing_sound(impact_velocity: float) -> void:
+	# Avoid zero velocity (just in case)
+	impact_velocity = max(impact_velocity, 0.01)
+
+	# Smooth exponential curve for normalized volume [0..1]
+	var normalized := 1.0 - exp(-impact_velocity * 0.2)
+
+	# Convert to dB: from -40 dB (quiet) to 0 dB (full volume)
+	var volume_db := lerp(-40.0, 0.0, normalized) as float
+
+	# Apply and play the sound
+	landingAudioPlayer.volume_db = volume_db
+	landingAudioPlayer.play()

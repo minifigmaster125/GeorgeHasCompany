@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dl7g7n11xewby"]
 
 [ext_resource type="Script" uid="uid://dsbvbnsbvlw41" path="res://main.gd" id="1_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bu40us7iusng6" path="res://post_processor.tscn" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://b2m4rl8nwsopt" path="res://sfx/georgeHadCompanyMusic.wav" id="2_0xm2m"]
 
 [sub_resource type="Sky" id="Sky_272bh"]
 
@@ -29,6 +29,8 @@ stretch_shrink = 3
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
@@ -58,12 +60,6 @@ transform = Transform3D(0.957552, 0.133669, 0.255394, -0.21875, -0.24004, 0.9457
 light_color = Color(0.744441, 0.77339, 0.899994, 1)
 light_energy = 0.5
 shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(0.57568, 0.28764, -0.765412, 0.0883218, 0.908732, 0.407927, 0.812891, -0.302438, 0.497734, -2.29373, 2.30522, 1.16416)
-
-[node name="Node3D" parent="SubViewportContainer/SubViewport/Camera3D" instance=ExtResource("4_lquwl")]
-visible = false
 
 [node name="NarrativeAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -110,3 +106,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_0xm2m")
 text = "Honk Honk"
 fit_content = true
 autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0xm2m")
+volume_db = -15.671
+autoplay = true

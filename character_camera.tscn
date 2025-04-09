@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d243rwfo3n1bx" path="res://character_camera.gd" id="1_jh334"]
 
 [node name="CharacterCamera" type="Camera3D"]
+current = true
 script = ExtResource("1_jh334")
 return_speed = 10.0
 

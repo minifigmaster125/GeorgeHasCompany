@@ -11,9 +11,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_sjb42"]
 size = Vector3(34.1282, 1, 48.9264)
 
-[node name="Level1" type="Node3D" node_paths=PackedStringArray("characters")]
+[node name="Level1" type="Node3D"]
 script = ExtResource("1_61w3m")
-characters = [NodePath("Player"), NodePath("Cylinder")]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 material_override = ExtResource("1_b3oru")
@@ -41,20 +40,20 @@ shape = SubResource("BoxShape3D_sjb42")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
 
 [node name="Spawn2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75315, 4.30863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14309, 2.75315, 3.79163)
 
 [node name="Player" parent="." groups=["characters"] instance=ExtResource("6_8hd6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
 
 [node name="Cylinder" parent="." groups=["characters"] instance=ExtResource("7_045es")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75315, 4.30863)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14309, 2.75315, 3.79163)
 
 [node name="GoalBox" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("8_omn1t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32818, 1, 0.833805)
 required_target = NodePath("../Player")
 
 [node name="GoalCylinder" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("9_lf3p4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.72121, -11.6656)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12121, -11.6656)
 required_target = NodePath("../Cylinder")
 
 [connection signal="body_entered" from="DeathArea" to="DeathArea" method="_on_body_entered"]

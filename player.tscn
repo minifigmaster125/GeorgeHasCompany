@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8ld6j5d137lp"]
+[gd_scene load_steps=8 format=3 uid="uid://c8ld6j5d137lp"]
 
 [ext_resource type="Script" uid="uid://b5wn71ixf1atu" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://b665wvgfdsg3p" path="res://sfx/jump.wav" id="2_hqtel"]
 [ext_resource type="Material" uid="uid://cb1k0b8xcl2di" path="res://playerMat.tres" id="2_i3pqv"]
 [ext_resource type="PackedScene" uid="uid://b4e3i7shmt1q2" path="res://character_camera.tscn" id="2_onrkg"]
 
@@ -15,6 +16,7 @@ size = Vector3(0.78363, 0.2, 0.803955)
 script = ExtResource("1_4flbx")
 jump_force = 22.0
 max_speed = 6.0
+jump_sound = ExtResource("2_hqtel")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00197303, -0.0053786, 0.00452733)
@@ -28,7 +30,6 @@ debug_color = Color(0.122104, 0.667543, 0.864034, 0.42)
 
 [node name="CharacterCamera" parent="." instance=ExtResource("2_onrkg")]
 transform = Transform3D(1, 0, 0, 0, 0.978678, 0.205402, 0, -0.205402, 0.978678, 0, 1.16173, 2.22245)
-current = true
 neutral_pitch = -20.0
 
 [node name="BottomArea" type="Area3D" parent="."]

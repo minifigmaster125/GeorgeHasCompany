@@ -1,44 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn0dmhedxp4rg"]
+[gd_scene load_steps=8 format=4 uid="uid://cn0dmhedxp4rg"]
 
 [ext_resource type="Script" uid="uid://b5wn71ixf1atu" path="res://player.gd" id="1_1x5ha"]
+[ext_resource type="AudioStream" uid="uid://c0vn0nyf7sxet" path="res://sfx/jump.ogg" id="2_8rj3p"]
 [ext_resource type="PackedScene" uid="uid://b4e3i7shmt1q2" path="res://character_camera.tscn" id="2_f54wh"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f54wh"]
-albedo_color = Color(0.269109, 0.453433, 0.688306, 1)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_f54wh"]
-radius = 0.38916
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_f54wh"]
-size = Vector3(1, 0.2, 1)
+size = Vector3(1.2, 0.2, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f54wh"]
+albedo_color = Color(0.299683, 0.623609, 0.823148, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_f54wh"]
+_surfaces = [{
+"aabb": AABB(-0.7, -0.6, -0.7, 1.4, 1.2, 1.4),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"material": SubResource("StandardMaterial3D_f54wh"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("MzMzv5qZGb8zMzM/MzMzv5qZGb8zMzO/MzMzv5qZGT8zMzO/MzMzP5qZGb8zMzO/MzMzv5qZGb8zMzO/MzMzv5qZGb8zMzM/MzMzv5qZGT8zMzO/MzMzv5qZGb8zMzO/MzMzP5qZGb8zMzO/MzMzv5qZGT8zMzO/MzMzv5qZGT8zMzM/MzMzv5qZGb8zMzM/MzMzv5qZGb8zMzM/MzMzv5qZGT8zMzM/MzMzP5qZGT8zMzM/MzMzP5qZGT8zMzM/MzMzv5qZGT8zMzM/MzMzv5qZGT8zMzO/MzMzv5qZGb8zMzM/MzMzP5qZGb8zMzM/MzMzP5qZGb8zMzO/MzMzP5qZGT8zMzM/MzMzP5qZGb8zMzM/MzMzv5qZGb8zMzM/MzMzP5qZGb8zMzO/MzMzP5qZGb8zMzM/MzMzP5qZGT8zMzM/MzMzP5qZGb8zMzO/MzMzP5qZGT8zMzO/MzMzv5qZGT8zMzO/MzMzv5qZGT8zMzO/MzMzP5qZGT8zMzO/MzMzP5qZGT8zMzM/MzMzP5qZGT8zMzM/MzMzP5qZGT8zMzO/MzMzP5qZGb8zMzO/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8rj3p"]
+points = PackedVector3Array(-0.7, -0.6, -0.7, -0.7, 0.6, -0.7, 0.699863, -0.6, -0.7, -0.7, -0.6, 0.699863, -0.7, 0.6, 0.699863, 0.699863, 0.6, -0.7, 0.699863, -0.6, 0.699863, 0.699863, 0.6, 0.699863)
 
 [node name="Cylinder" type="CharacterBody3D"]
 script = ExtResource("1_1x5ha")
 jump_force = 15.0
-
-[node name="CSGMesh3D" type="CSGCylinder3D" parent="."]
-radius = 0.390137
-material = SubResource("StandardMaterial3D_f54wh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CylinderShape3D_f54wh")
+jump_sound = ExtResource("2_8rj3p")
 
 [node name="CharacterCamera" parent="." instance=ExtResource("2_f54wh")]
 transform = Transform3D(1, 0, 0, 0, 0.922242, 0.386614, 0, -0.386614, 0.922242, 0, 1.41989, 2.25598)
-current = true
 neutral_pitch = -20.0
 
 [node name="BottomArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01456, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.61456, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BottomArea"]
 shape = SubResource("BoxShape3D_f54wh")
 debug_color = Color(6.16074e-06, 0.754531, 0.878123, 0.42)
 
 [node name="TopArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TopArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, 0, 1.19209e-07)
 shape = SubResource("BoxShape3D_f54wh")
 debug_color = Color(6.16074e-06, 0.754531, 0.878123, 0.42)
+
+[node name="CSGMesh3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08)
+mesh = SubResource("ArrayMesh_f54wh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08)
+shape = SubResource("ConvexPolygonShape3D_8rj3p")

@@ -1,6 +1,6 @@
 extends Node3D
 
-var current_level = 1
+var current_level = 0
 var current_level_scene: Level = null
 const levels := ["res://levels/level1.tscn", "res://levels/level_2.tscn"]
 @onready var narratives := [
@@ -14,6 +14,7 @@ const levels := ["res://levels/level1.tscn", "res://levels/level_2.tscn"]
 @onready var narrativeAudioPlayer = %NarrativeAudioPlayer as AudioStreamPlayer
 
 func _ready() -> void:
+	
 	load_level(current_level)
 
 
