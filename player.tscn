@@ -14,8 +14,8 @@ size = Vector3(0.78363, 0.2, 0.803955)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
-jump_force = 22.0
-max_speed = 6.0
+jump_force = 25.0
+max_speed = 7.0
 jump_sound = ExtResource("2_hqtel")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]

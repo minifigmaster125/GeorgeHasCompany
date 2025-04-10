@@ -19,13 +19,13 @@ material_override = ExtResource("1_b3oru")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-size = Vector3(17, 1, 25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.56372)
+size = Vector3(17, 1, 26.1274)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08093, 0.0379944, -3.63956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08093, 0.0379944, -4.62693)
 operation = 2
-size = Vector3(19.2078, 1.83002, 4.59717)
+size = Vector3(19.2078, 1.83002, 6.5719)
 
 [node name="DeathArea" type="Area3D" parent="." node_paths=PackedStringArray("spawn_point_one", "spawn_point_two")]
 script = ExtResource("2_pdtm5")
@@ -44,6 +44,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14309, 2.75315, 3.79163)
 
 [node name="Player" parent="." groups=["characters"] instance=ExtResource("6_8hd6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71274, 5.50991)
+max_speed = 10.0
 
 [node name="Cylinder" parent="." groups=["characters"] instance=ExtResource("7_045es")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.14309, 2.75315, 3.79163)

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="pixel3dShader"
-run/main_scene="uid://dl7g7n11xewby"
+run/main_scene="uid://icd2kyuikf4i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://d1mmd0xbomt5l"
 
 [display]
 

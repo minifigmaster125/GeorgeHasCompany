@@ -4,8 +4,8 @@ extends Control
 @onready var menu_container := %MenuContainer
 @onready var highlight := %Highlight
 
-var up_sfx := preload("res://sfx/phaserUp3.ogg")
-var down_sfx := preload("res://sfx/phaserDown3.ogg")
+var up_sfx := preload("res://sfx/upUi.ogg")
+var down_sfx := preload("res://sfx/downUi.ogg")
 
 var selected_index := 0
 var current_tween: Tween = null
@@ -13,6 +13,7 @@ var move_dist = 0.0
 const ANIM_DURATION := 0.15
 
 func _ready():
+	$AudioStreamPlayer.volume_db = -10
 	buttons[selected_index].grab_focus()
 	call_deferred("_move_highlight_to", selected_index, 0, true)
 
@@ -91,3 +92,7 @@ func _move_highlight_to(index: int, direction: int = 0, instant := false):
 
 func _process(delta):
 	%Display/RotateParent.rotate_y(0.3 * delta)
+
+
+func _on_option_start_pressed():
+	get_tree().change_scene_to_file("res://main.tscn")
