@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://icd2kyuikf4i"]
+[gd_scene load_steps=17 format=3 uid="uid://icd2kyuikf4i"]
 
 [ext_resource type="Theme" uid="uid://brjmx5njm0nr7" path="res://main_color_theme.tres" id="1_7vrkn"]
 [ext_resource type="LabelSettings" uid="uid://cdh24giocun8g" path="res://menu_label_settings.tres" id="2_fu7sn"]
 [ext_resource type="Script" uid="uid://ofip0oi7lukp" path="res://main_menu.gd" id="2_glbon"]
 [ext_resource type="PackedScene" uid="uid://c8ld6j5d137lp" path="res://player.tscn" id="2_jix8l"]
+[ext_resource type="Script" uid="uid://da4w5brfdwa7q" path="res://landing_screen.gd" id="3_8qtwp"]
 [ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="3_glbon"]
 [ext_resource type="AudioStream" uid="uid://b2m4rl8nwsopt" path="res://sfx/georgeHadCompanyMusic.wav" id="5_glbon"]
 [ext_resource type="Script" uid="uid://bnrfgf52ti17r" path="res://audio_settings.gd" id="5_qe12f"]
@@ -67,11 +68,12 @@ grow_vertical = 2
 theme = ExtResource("1_7vrkn")
 theme_override_styles/panel = SubResource("StyleBoxFlat_jix8l")
 
-[node name="landing" type="Control" parent="PanelContainer"]
-visible = false
+[node name="LandingScreen" type="Control" parent="PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+script = ExtResource("3_8qtwp")
 
-[node name="BackgroundParticles" type="GPUParticles2D" parent="PanelContainer/landing"]
+[node name="BackgroundParticles" type="GPUParticles2D" parent="PanelContainer/LandingScreen"]
 position = Vector2(971, 532)
 amount = 2
 amount_ratio = 0.5
@@ -79,17 +81,17 @@ texture = SubResource("GradientTexture2D_glbon")
 lifetime = 1.5
 process_material = SubResource("ParticleProcessMaterial_glbon")
 
-[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/landing"]
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/LandingScreen"]
 layout_mode = 2
 offset_right = 1920.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 200
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/landing/MarginContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/LandingScreen/MarginContainer3"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/landing/MarginContainer3/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 126
@@ -98,51 +100,51 @@ Had
 Company"
 label_settings = SubResource("LabelSettings_glbon")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/landing/MarginContainer3/HBoxContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="SubViewport" type="SubViewport" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
-render_target_update_mode = 0
+render_target_update_mode = 4
 
-[node name="Display" type="Node3D" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport"]
+[node name="Display" type="Node3D" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 
-[node name="RotateParent" type="Node3D" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
+[node name="RotateParent" type="Node3D" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
 
-[node name="Player" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display/RotateParent" instance=ExtResource("2_jix8l")]
+[node name="Player" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display/RotateParent" instance=ExtResource("2_jix8l")]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display/RotateParent"]
+[node name="CSGBox3D" type="CSGBox3D" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display/RotateParent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -0.005)
 material_override = ExtResource("3_glbon")
 use_collision = true
 size = Vector3(2, 0.25, 2)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
 transform = Transform3D(0.924719, 1.66388e-08, -0.380651, 0.380651, -4.04207e-08, 0.924719, -1.53843e-15, -1, -4.37114e-08, 0, 2.70277, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
 environment = SubResource("Environment_jix8l")
 
-[node name="Camera3D" type="Camera3D" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
+[node name="Camera3D" type="Camera3D" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/SubViewportContainer/SubViewport/Display"]
 transform = Transform3D(0.707107, -0.183013, 0.683013, 0, 0.965926, 0.258819, -0.707107, -0.183013, 0.683013, 2.50558, 1.09859, 2.41936)
 current = true
 fov = 83.9
 
-[node name="OptionsContainer" type="Control" parent="PanelContainer/landing/MarginContainer3/HBoxContainer"]
+[node name="OptionsContainer" type="Control" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Highlight" type="ColorRect" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer"]
+[node name="Highlight" type="ColorRect" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer"]
 unique_name_in_owner = true
 layout_mode = 0
 
-[node name="TopArrow" type="Label" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/Highlight"]
+[node name="TopArrow" type="Label" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/Highlight"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -153,7 +155,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "▲"
 
-[node name="BottomArrow" type="Label" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/Highlight"]
+[node name="BottomArrow" type="Label" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/Highlight"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -166,7 +168,7 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "▼"
 
-[node name="MenuContainer" type="MarginContainer" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer"]
+[node name="MenuContainer" type="MarginContainer" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -175,7 +177,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Menu" type="VBoxContainer" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer"]
+[node name="Menu" type="VBoxContainer" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -183,30 +185,35 @@ size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="OptionStart" type="Button" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
+[node name="OptionStart" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
 layout_mode = 2
 theme = ExtResource("1_7vrkn")
 text = "Start"
 alignment = 0
 
-[node name="OptionSelect" type="Button" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
+[node name="OptionSelect" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
 layout_mode = 2
 text = "Level Select"
 alignment = 0
 
-[node name="OptionAudio" type="Button" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
+[node name="OptionAudio" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
 layout_mode = 2
 text = "Audio"
 alignment = 0
 
-[node name="OptionInput" type="Button" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
+[node name="OptionInput" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
 layout_mode = 2
 text = "Controls"
 alignment = 0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PanelContainer/LandingScreen"]
+bus = &"SFX"
 
 [node name="AudioSettings" type="Control" parent="PanelContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("5_qe12f")
 
@@ -251,13 +258,11 @@ label_settings = ExtResource("2_fu7sn")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
-
 [node name="MainThemePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_glbon")
 volume_db = -10.0
 autoplay = true
 bus = &"BGM"
 
-[connection signal="pressed" from="PanelContainer/landing/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu/OptionStart" to="." method="_on_option_start_pressed"]
+[connection signal="pressed" from="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu/OptionStart" to="." method="_on_option_start_pressed"]
+[connection signal="pressed" from="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu/OptionAudio" to="." method="_on_option_audio_pressed"]
