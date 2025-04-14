@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://icd2kyuikf4i"]
+[gd_scene load_steps=20 format=3 uid="uid://icd2kyuikf4i"]
 
 [ext_resource type="Theme" uid="uid://brjmx5njm0nr7" path="res://main_color_theme.tres" id="1_7vrkn"]
 [ext_resource type="LabelSettings" uid="uid://cdh24giocun8g" path="res://menu_label_settings.tres" id="2_fu7sn"]
@@ -8,9 +8,12 @@
 [ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="3_glbon"]
 [ext_resource type="AudioStream" uid="uid://b2m4rl8nwsopt" path="res://sfx/georgeHadCompanyMusic.wav" id="5_glbon"]
 [ext_resource type="Script" uid="uid://bnrfgf52ti17r" path="res://audio_settings.gd" id="5_qe12f"]
+[ext_resource type="VideoStream" path="res://assets/ghc_move_tut.ogv" id="8_0o4t1"]
+[ext_resource type="VideoStream" path="res://assets/ghc_jump_tut.ogv" id="9_0k4wn"]
+[ext_resource type="VideoStream" path="res://assets/ghc_switch_tut.ogv" id="10_0k4wn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
-bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
+bg_color = Color(0.20871, 0.20871, 0.20871, 1)
 
 [sub_resource type="Gradient" id="Gradient_jix8l"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -191,11 +194,6 @@ theme = ExtResource("1_7vrkn")
 text = "Start"
 alignment = 0
 
-[node name="OptionSelect" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
-layout_mode = 2
-text = "Level Select"
-alignment = 0
-
 [node name="OptionAudio" type="Button" parent="PanelContainer/LandingScreen/MarginContainer3/HBoxContainer/OptionsContainer/MenuContainer/Menu"]
 layout_mode = 2
 text = "Audio"
@@ -247,6 +245,8 @@ label_settings = ExtResource("2_fu7sn")
 [node name="BGMVolume" type="HSlider" parent="PanelContainer/AudioSettings/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 2.0
+step = 0.1
 
 [node name="SfxMusic" type="Label" parent="PanelContainer/AudioSettings/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -257,6 +257,125 @@ label_settings = ExtResource("2_fu7sn")
 [node name="SFXVolume" type="HSlider" parent="PanelContainer/AudioSettings/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+max_value = 2.0
+step = 0.1
+
+[node name="ControlsScreen" type="Control" parent="PanelContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+script = ExtResource("5_qe12f")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/ControlsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ControlsScreen/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Controls"
+label_settings = ExtResource("2_fu7sn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Move with [img]res://icons/keyboard_w.png[/img][img]res://icons/keyboard_a.png[/img][img]res://icons/keyboard_s.png[/img][img]res://icons/keyboard_d.png[/img]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+stretch_mode = 3
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+stream = ExtResource("8_0o4t1")
+autoplay = true
+expand = true
+loop = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 100
+
+[node name="Jump with" type="RichTextLabel" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Jump with [img]res://icons/keyboard_space.png[/img]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+stretch_mode = 3
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/AspectRatioContainer2"]
+layout_mode = 2
+stream = ExtResource("9_0k4wn")
+autoplay = true
+expand = true
+loop = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Change characters with [img]res://icons/keyboard_shift.png[/img]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 10
+stretch_mode = 3
+alignment_horizontal = 0
+alignment_vertical = 0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="PanelContainer/ControlsScreen/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/AspectRatioContainer3"]
+layout_mode = 2
+stream = ExtResource("10_0k4wn")
+autoplay = true
+expand = true
+loop = true
 
 [node name="MainThemePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_glbon")

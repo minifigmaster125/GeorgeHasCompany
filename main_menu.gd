@@ -12,5 +12,4 @@ func _on_option_audio_pressed():
 	
 func disable_node(node: Node):
 	node.set_visible(false)
-	node.set_process(false)
 	node.process_mode = Node.PROCESS_MODE_DISABLED

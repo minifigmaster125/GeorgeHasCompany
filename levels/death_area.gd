@@ -9,7 +9,6 @@ func _ready():
 
 
 func _on_body_entered(body: Node3D):
-	print(body.name)
 	if body.name == "player":
 		body.global_position = spawn_point_one.global_position
 	else:

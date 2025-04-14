@@ -70,7 +70,6 @@ func _physics_process(delta):
 		if airborne:
 			airborne = false
 			# play landing sound
-			print(last_velocity.y)
 			play_landing_sound(abs(last_velocity.y))
 
 	if abs(velocity.y) > 0:
