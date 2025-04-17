@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dl7g7n11xewby"]
+[gd_scene load_steps=9 format=3 uid="uid://dl7g7n11xewby"]
 
 [ext_resource type="Script" uid="uid://dsbvbnsbvlw41" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="AudioStream" uid="uid://b2m4rl8nwsopt" path="res://sfx/georgeHadCompanyMusic.wav" id="2_0xm2m"]
@@ -9,10 +9,17 @@
 background_mode = 2
 sky = SubResource("Sky_272bh")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7mycd"]
-viewport_path = NodePath("SubViewport2")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h2yge"]
+gradient = SubResource("Gradient_0xm2m")
+width = 3
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_h2yge")
@@ -63,14 +70,6 @@ shadow_enabled = true
 
 [node name="NarrativeAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -19.945
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 51.0
-offset_top = 725.0
-offset_right = 531.0
-offset_bottom = 995.0
-texture = SubResource("ViewportTexture_7mycd")
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 size = Vector2i(362, 232)
@@ -81,23 +80,26 @@ projection = 1
 size = 23.972
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_top = 100.0
-offset_right = -100.0
-grow_horizontal = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="LevelNarrative" type="RichTextLabel" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_bottom = -250.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_h2yge")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="LevelNarrative" type="RichTextLabel" parent="PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -106,6 +108,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_0xm2m")
 text = "Honk Honk"
 fit_content = true
 autowrap_mode = 2
+horizontal_alignment = 2
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("GradientTexture1D_h2yge")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0xm2m")

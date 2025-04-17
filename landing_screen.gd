@@ -94,11 +94,3 @@ func _process(delta):
 	%Display/RotateParent.rotate_y(0.3 * delta)
 
 
-func _on_option_start_pressed():
-	get_tree().change_scene_to_file("res://main.tscn")
-
-
-func _on_option_audio_pressed():
-	%AudioSettings.set_visible(true)
-	%LandingScreen.set_visible(false)
-
