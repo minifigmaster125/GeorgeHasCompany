@@ -10,9 +10,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_onrkg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i3pqv"]
-size = Vector3(0.78363, 0.2, 0.803955)
+size = Vector3(0.829037, 0.2, 0.844193)
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 5
 script = ExtResource("1_4flbx")
 jump_force = 25.0
 max_speed = 7.0
@@ -40,9 +41,10 @@ shape = SubResource("BoxShape3D_i3pqv")
 
 [node name="TopArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TopArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0276794, 0, 0.0155029)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214939, 0, 0.0114822)
 shape = SubResource("BoxShape3D_i3pqv")
 
 [connection signal="body_entered" from="TopArea" to="." method="_on_top_area_body_entered"]

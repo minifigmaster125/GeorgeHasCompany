@@ -12,15 +12,21 @@ class_name Player
 
 var jumped = false
 var direction: Vector3 = Vector3.ZERO
-var attached: Array[CharacterBody3D] = []
-var dist: Vector3 = Vector3.ZERO
+var attached: Array[Dictionary] = []
 var airborne = false
 var last_velocity: Vector3 = Vector3.ZERO
+var carried = false
+var coyote_timer = Timer.new()
+var coyote = false
 
 var landingAudioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 var jumpingAudioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 const landing_sound = preload("res://sfx/landing.ogg")
 @export var jump_sound = AudioStream
+@export var spawn_location: Node3D
+
+@onready var topArea: Area3D
+
 
 func _ready():
 	landingAudioPlayer.stream = landing_sound
@@ -28,6 +34,12 @@ func _ready():
 	jumpingAudioPlayer.volume_db = -20.0
 	add_child(landingAudioPlayer)
 	add_child(jumpingAudioPlayer)
+	set_collision_layer_value(1, true)
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(3, true)
+	set_collision_mask_value(1, true)
+	topArea = get_node_or_null("TopArea")
+	
 	
 func _physics_process(delta):
 	if active:
@@ -42,7 +54,7 @@ func _physics_process(delta):
 			direction.x -= 1.0
 		if Input.is_action_pressed("move_right"):
 			direction.x += 1.0
-		if is_on_floor() and Input.is_action_just_pressed("jump"):
+		if (is_on_floor()) and Input.is_action_just_pressed("jump"):
 			velocity.y = jump_force
 			jumpingAudioPlayer.play()
 
@@ -60,11 +72,12 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, d.x * max_speed, delta * (decceleration if d.x == 0 else acceleration))
 		velocity.z = lerp(velocity.z, d.z * max_speed, delta * (decceleration if d.z == 0 else acceleration))
 
-		for body in attached:
-			if velocity.y > 0 && body.test_move(body.global_transform, Vector3(0, 1, 0)):
-				velocity.y = 0
-			else:
-				body.position = position + dist
+	for a in attached:
+		if velocity.y > 0 && a.body.test_move(a.body.global_transform, Vector3(0, 1, 0)):
+			velocity.y = 0
+		else:
+			a.body.position = position + a.dist
+			a.body.rotation.y = rotation.y
 
 	if is_on_floor():
 		if airborne:
@@ -75,30 +88,24 @@ func _physics_process(delta):
 	if abs(velocity.y) > 0:
 			airborne = true
 
-	last_velocity = velocity
-	velocity.y -= mass * gravity * delta
-	move_and_slide()
+	if (!carried):
+		last_velocity = velocity
+		velocity.y -= mass * gravity * delta
+		move_and_slide()
 
 
 func activate():
+	carried = false
 	set_collision_layer_value(1, true)
-	set_collision_layer_value(2, false)
-	if get_node_or_null("TopArea"):
-		($TopArea as Area3D).set_collision_mask_value(2, true)
-		$TopArea.get_overlapping_bodies().map(func(body: Node3D) -> void:
-			if body != self && body is CharacterBody3D:
-				attached.append(body)
-				dist = body.position - position
-				(body as CharacterBody3D).set_collision_layer_value(2, true)
-				(body as CharacterBody3D).set_collision_layer_value(1, false)
-		)
+	attach_bodies()
 
 	active = true
 	velocity = Vector3.ZERO
 	$CharacterCamera.current = true
+
 	
 func deactivate():
-	attached.clear()
+	clear_attached()
 	velocity = Vector3.ZERO
 	active = false
 	$CharacterCamera.current = false
@@ -116,3 +123,34 @@ func play_landing_sound(impact_velocity: float) -> void:
 	# Apply and play the sound
 	landingAudioPlayer.volume_db = volume_db
 	landingAudioPlayer.play()
+
+func attach_bodies():
+	if topArea:
+		topArea.get_overlapping_bodies().map(func(body: Node3D) -> void:
+			if body != self and body is CharacterBody3D:
+				body.carried = true
+				var attachee = {
+					"body": body,
+					"dist": body.position - position
+				}
+				attached.append(attachee)
+				(body as CharacterBody3D).set_collision_layer_value(1, false)
+				# (body as CharacterBody3D).set_collision_mask_value(2, true)
+				body.attach_bodies()
+				# (body as CharacterBody3D).set_collision_layer_value(3, true)
+		)
+	print(name)
+	print("ATTACHED", attached.map(func(a): return a.body.name))
+
+func clear_attached():
+	attached.map(func(a: Dictionary) -> void:
+		var body = a.body
+		body.velocity = Vector3.ZERO
+		body.set_collision_layer_value(1, true)
+		# body.set_collision_mask_value(2, false)
+		body.clear_attached()
+	)
+	attached.clear()
+
+func _on_coyote_timeout():
+	coyote = false

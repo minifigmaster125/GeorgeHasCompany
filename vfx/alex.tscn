@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=4 uid="uid://uooc22h34hn3"]
+
+[ext_resource type="Script" uid="uid://b5wn71ixf1atu" path="res://player.gd" id="1_23e18"]
+[ext_resource type="AudioStream" uid="uid://c0vn0nyf7sxet" path="res://sfx/jump.ogg" id="2_vnm73"]
+[ext_resource type="PackedScene" uid="uid://b4e3i7shmt1q2" path="res://character_camera.tscn" id="3_co6vn"]
+[ext_resource type="Script" uid="uid://c5jqeatdlg0hm" path="res://alex_area_3d.gd" id="5_pcdlv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgede"]
+albedo_color = Color(0.967447, 0, 0.323577, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sajqr"]
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 1.82347, 2),
+"format": 34896613377,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAwABAAAABAAAAAIAAwAAAAQAAwAEAAIA"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 5,
+"vertex_data": PackedByteArray("//8AAP//AAAAAAAA//8AAP9/////fwAAAAAAAAAAAAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hgede"]
+resource_name = "alex_Cube"
+_surfaces = [{
+"aabb": AABB(-1, -1, -1, 2, 1.82347, 2),
+"attribute_data": PackedByteArray("/1//P/9fAAD/nwAA/1////9f/7//n/+//x//f/9f/z//X/9//x//P/9f/3//X/8//5//P/9f/7//X/9//5//fw=="),
+"format": 34896613399,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgABgAJAAcACgALAAwADQAOAA8A"),
+"material": SubResource("StandardMaterial3D_hgede"),
+"name": "Material",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAP//pLEAAAAA//+ksf9/////f6SxAAAAAP//zsMAAAAAAADOw/9/////f87DAAAAAAAA/7///wAA////v///AAAAAP+/AAAAAP///7///wAAAACY1v//AAD//5jW/3////9/mNYAAAAAAAAz9f//AAAAADP1/3////9/M/VJ7FkfSexZH0nsWR/GzPfJxsz3ycbM98kAAP9/AAD/fwAA/38AAP9/cj23E3I9txNyPbcTsarnw7Gq58OxqufD")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_sajqr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f54wh"]
+size = Vector3(0.737891, 0.2, 0.7)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pcdlv"]
+points = PackedVector3Array(-1, -1, -1, -1, -1, 1, -0.000195742, 0.823468, -0.000195742, 1, -1, -1, 1, -1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hgede"]
+radius = 0.00922278
+
+[node name="Alex" type="CharacterBody3D"]
+script = ExtResource("1_23e18")
+max_speed = 15.0
+jump_sound = ExtResource("2_vnm73")
+
+[node name="CSGMesh3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0789885, 0)
+mesh = SubResource("ArrayMesh_hgede")
+skeleton = NodePath("")
+
+[node name="CharacterCamera" parent="." instance=ExtResource("3_co6vn")]
+transform = Transform3D(1, 0, 0, 0, 0.922242, 0.386614, 0, -0.386614, 0.922242, 0, 1.41989, 2.25598)
+neutral_pitch = -20.0
+
+[node name="BottomArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.370887, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BottomArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00107419, 0, 0.073706)
+shape = SubResource("BoxShape3D_f54wh")
+debug_color = Color(6.16074e-06, 0.754531, 0.878123, 0.42)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0769179, 0)
+shape = SubResource("ConvexPolygonShape3D_pcdlv")
+
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("5_pcdlv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.498525, 0)
+shape = SubResource("SphereShape3D_hgede")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

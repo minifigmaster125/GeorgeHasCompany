@@ -1,0 +1,200 @@
+[gd_scene load_steps=19 format=3 uid="uid://blasnn4st771p"]
+
+[ext_resource type="Script" uid="uid://bhgg2o5o4kojw" path="res://levels/level_manager.gd" id="1_lfnxh"]
+[ext_resource type="Material" uid="uid://33a40lpvwlh5" path="res://blackMat.tres" id="2_ofchu"]
+[ext_resource type="PackedScene" uid="uid://c8ld6j5d137lp" path="res://player.tscn" id="3_jq78i"]
+[ext_resource type="PackedScene" uid="uid://cn0dmhedxp4rg" path="res://wolfgang.tscn" id="4_lsnkt"]
+[ext_resource type="Script" uid="uid://byhjceh4aqk5x" path="res://levels/mechanism.gd" id="5_wj73x"]
+[ext_resource type="AudioStream" uid="uid://bsx2sijdojhbo" path="res://sfx/lift.ogg" id="6_0unm6"]
+[ext_resource type="PackedScene" uid="uid://uooc22h34hn3" path="res://vfx/alex.tscn" id="6_8l0e1"]
+[ext_resource type="PackedScene" uid="uid://c7v0jh165vt04" path="res://components/pressable.tscn" id="7_ofchu"]
+[ext_resource type="Script" uid="uid://cpv38oy5nj82r" path="res://levels/death_area.gd" id="7_q42ux"]
+[ext_resource type="Material" uid="uid://do6rv0tr6wvqf" path="res://levels/pressable.tres" id="8_jq78i"]
+[ext_resource type="Script" uid="uid://bub6yw7ktbsne" path="res://levels/platform.gd" id="10_wj73x"]
+[ext_resource type="PackedScene" uid="uid://cofxfeh7uhetk" path="res://goal_box.tscn" id="12_q42ux"]
+[ext_resource type="PackedScene" uid="uid://b00aelsuslenj" path="res://goal_alex.tscn" id="13_s3q8p"]
+[ext_resource type="PackedScene" uid="uid://bv5ue6a0w176o" path="res://goal_cylinder.tscn" id="13_wi0qq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcjpl"]
+size = Vector3(91.0667, 1.13403, 128.586)
+
+[sub_resource type="Curve3D" id="Curve3D_0unm6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12.5403, 3.8147e-06),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_q42ux"]
+data = PackedVector3Array(-3.78522, -0.305054, 7.90228, -3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, -0.305054, -7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, -7.90228, 3.78522, -0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, -3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, -3.78522, 0.305054, 7.90228, -3.78522, 0.305054, -7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, 7.90228, -3.78522, -0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, -0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, -0.305054, -7.90228, 3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, -3.78522, 0.305054, -7.90228, 3.78522, 0.305054, -7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, 7.90228, 3.78522, 0.305054, -7.90228, 3.78522, -0.305054, -7.90228)
+
+[sub_resource type="Curve3D" id="Curve3D_wi0qq"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19.0765, 2.86102e-06),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Level3" type="Node3D"]
+script = ExtResource("1_lfnxh")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("2_ofchu")
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8.37485, -1)
+size = Vector3(23, 1, 23)
+material = ExtResource("2_ofchu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8.37485, -37.3522)
+size = Vector3(23, 1, 23)
+material = ExtResource("2_ofchu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -8.37485, -81.0931)
+size = Vector3(23, 1, 23)
+material = ExtResource("2_ofchu")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.86359, -35.4606, -47.2347)
+size = Vector3(2, 1, 105.904)
+material = ExtResource("2_ofchu")
+
+[node name="Spawn1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.86294, 5.50991)
+
+[node name="Spawn2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7787, -4.23279, 3.47591)
+
+[node name="Alex" parent="." node_paths=PackedStringArray("spawn_location") groups=["characters"] instance=ExtResource("6_8l0e1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42363, -6.3116, 4.68719)
+spawn_location = NodePath("../SpawnAlex")
+
+[node name="Cylinder" parent="." node_paths=PackedStringArray("spawn_location") groups=["characters"] instance=ExtResource("4_lsnkt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6733, -4.5086, 4.30863)
+spawn_location = NodePath("../Spawn2")
+
+[node name="Player" parent="." node_paths=PackedStringArray("spawn_location") groups=["characters"] instance=ExtResource("3_jq78i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.991843, -2.80199, 5.49393)
+spawn_location = NodePath("../Spawn1")
+
+[node name="DeathArea" type="Area3D" parent="." node_paths=PackedStringArray("spawn_point_one", "spawn_point_two")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00186586, -2.95053, -0.0150013)
+script = ExtResource("7_q42ux")
+spawn_point_one = NodePath("../Spawn1")
+spawn_point_two = NodePath("../Spawn2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.64878, -43.3568, -21.2162)
+shape = SubResource("BoxShape3D_wcjpl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87842, -8.56875, -25.8005)
+use_collision = true
+size = Vector3(8.13574, 1.3728, 3)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87842, -8.56875, -11.8005)
+use_collision = true
+size = Vector3(8.13574, 1.3728, 3)
+
+[node name="Bridge1" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.528302, -7.46147, -30.2611)
+use_collision = true
+size = Vector3(1, 2.24561, 1)
+material = ExtResource("2_ofchu")
+
+[node name="Bridge1Button" parent="Bridge1" node_paths=PackedStringArray("mechanism") instance=ExtResource("7_ofchu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00637436, 0.0917597, 0.56711)
+mechanism = NodePath("../../Bridge1Mech")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87842, -8.57765, -69.5414)
+use_collision = true
+size = Vector3(8.13574, 1.3728, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87842, -8.57765, -48.34)
+use_collision = true
+size = Vector3(8.13574, 1.3728, 3)
+
+[node name="Bridge2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9199, -7.46147, -42.9457)
+use_collision = true
+size = Vector3(1, 2.24561, 1)
+material = ExtResource("2_ofchu")
+
+[node name="Bridge2Button" parent="Bridge2" node_paths=PackedStringArray("mechanism") instance=ExtResource("7_ofchu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0173359, 0.0917597, 0.567112)
+mechanism = NodePath("../../Bridge1Mech2")
+
+[node name="Bridge1Mech" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.293361, -5.66825, -5.35927)
+script = ExtResource("5_wj73x")
+lift_sound = ExtResource("6_0unm6")
+
+[node name="Path3D" type="Path3D" parent="Bridge1Mech"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.77636e-14, 0, -1.77636e-14, 1, 5.61661, -22.3183, 2.61791)
+curve = SubResource("Curve3D_0unm6")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bridge1Mech/Path3D"]
+transform = Transform3D(-1.62918e-07, 0.999977, -4.37108e-08, 0, -4.37104e-08, -0.999987, -0.999981, -1.62917e-07, 7.1214e-15, 0, 0, 0)
+loop = false
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Bridge1Mech/Path3D/PathFollow3D"]
+transform = Transform3D(2.6866e-16, -4.37114e-08, -1, -1, -4.37114e-08, -3.55273e-15, -4.37114e-08, 1, -4.37114e-08, 0, 0, 5.03708)
+sync_to_physics = false
+script = ExtResource("10_wj73x")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Bridge1Mech/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952678, 0.999953, 4.32134e-07, 0.0013938, -0.918924, 0.242014)
+size = Vector3(7.57043, 0.610107, 15.8046)
+material = ExtResource("8_jq78i")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Bridge1Mech/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952678, 0.999953, 4.32134e-07, 0.0013938, -0.918924, 0.242014)
+shape = SubResource("ConcavePolygonShape3D_q42ux")
+
+[node name="Bridge1Mech2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.293361, -5.67716, -49.1607)
+script = ExtResource("5_wj73x")
+lift_sound = ExtResource("6_0unm6")
+
+[node name="Path3D" type="Path3D" parent="Bridge1Mech2"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.77636e-14, 0, -1.77636e-14, 1, 5.61661, -22.3183, 2.61791)
+curve = SubResource("Curve3D_wi0qq")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Bridge1Mech2/Path3D"]
+transform = Transform3D(-1.62918e-07, 0.999977, -4.37108e-08, 0, -4.37104e-08, -0.999987, -0.999981, -1.62917e-07, 7.1214e-15, 0, 0, 0)
+loop = false
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Bridge1Mech2/Path3D/PathFollow3D"]
+transform = Transform3D(2.6866e-16, -4.37114e-08, -1, -1, -4.37114e-08, -3.55273e-15, -4.37114e-08, 1, -4.37114e-08, 0, 0, 5.03708)
+sync_to_physics = false
+script = ExtResource("10_wj73x")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Bridge1Mech2/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952689, 0.99996, 4.32136e-07, 0.00814533, 1.13596, 0.242013)
+size = Vector3(7.57043, 0.610107, 20.0348)
+material = ExtResource("8_jq78i")
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Bridge1Mech2/Path3D/PathFollow3D/AnimatableBody3D"]
+transform = Transform3D(0.999908, -0.00952638, -0.00971523, -0.00971459, 9.32217e-05, -0.999953, 0.00952678, 0.999953, 4.32134e-07, 0.0013938, -0.918924, 0.242014)
+shape = SubResource("ConcavePolygonShape3D_q42ux")
+
+[node name="GoalBox" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("12_q42ux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.433773, -7.21624, -83.2579)
+required_target = NodePath("../Player")
+
+[node name="GoalAlex" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("13_s3q8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3458, -7.52573, -82.4744)
+required_target = NodePath("../Alex")
+
+[node name="GoalCylinder" parent="." node_paths=PackedStringArray("required_target") instance=ExtResource("13_wi0qq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19398, -34.4398, 4.78131)
+required_target = NodePath("../Cylinder")
+
+[node name="SpawnAlex" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42363, -6.3116, 4.68719)

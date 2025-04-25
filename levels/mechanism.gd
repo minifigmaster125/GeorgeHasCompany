@@ -10,7 +10,7 @@ var player: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 func _ready():
 	player.stream = lift_sound
-	player.volume_db = -10.0
+	player.volume_db = 0.0
 	add_child(player)
 
 

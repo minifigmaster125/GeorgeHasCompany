@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlpctnc686wiu"]
+
+[ext_resource type="PackedScene" uid="uid://d36we0d6e3r66" path="res://assets/alex.glb" id="1_xumnp"]
+
+[node name="alex" instance=ExtResource("1_xumnp")]
