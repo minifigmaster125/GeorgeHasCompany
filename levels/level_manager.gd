@@ -50,3 +50,12 @@ func wrap_up():
 		var mesh := character.get_node("CSGMesh3D")
 		tween.tween_property(mesh, "scale", Vector3.ZERO, 0.5)
 	await tween.finished
+
+func play_level_completed_sound():
+	var audio_player = AudioStreamPlayer.new()
+	audio_player.stream = load("res://sfx/level_completed.ogg")
+	audio_player.volume_db = -10
+	add_child(audio_player)
+	audio_player.play()
+	await audio_player.finished
+	audio_player.queue_free()

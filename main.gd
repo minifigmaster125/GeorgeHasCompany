@@ -1,6 +1,6 @@
 extends Node3D
 
-var current_level = 2
+var current_level = 0
 var current_level_scene: Level = null
 const levels := ["res://levels/level1.tscn", "res://levels/level_2.tscn", "res://levels/level_3.tscn", "res://levels/level_4.tscn", "res://levels/level_5.tscn"]
 @onready var narratives := [
@@ -38,6 +38,7 @@ func load_level(level_idx: int):
 	tween.parallel().tween_property(narrativeContainer, "position", narrativeContainer.position + Vector2(0, 20), 1)
 
 func level_transition():
+	current_level_scene.play_level_completed_sound()
 	await current_level_scene.wrap_up()
 	current_level_scene.queue_free()
 	current_level = current_level + 1

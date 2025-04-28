@@ -70,6 +70,7 @@ shadow_enabled = true
 
 [node name="NarrativeAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
+bus = &"SFX"
 
 [node name="SubViewport2" type="SubViewport" parent="."]
 size = Vector2i(362, 232)
@@ -81,7 +82,7 @@ size = 23.972
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
@@ -119,3 +120,4 @@ texture = SubResource("GradientTexture1D_h2yge")
 stream = ExtResource("2_0xm2m")
 volume_db = -15.671
 autoplay = true
+bus = &"BGM"
